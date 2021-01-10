@@ -16,9 +16,9 @@ router.post('/insert-all', async(req, res) => {
 
 // Add To Cart 
 router.get('/insert-all', async(req, res) => {
-   // const search = req.query.search
+   const search = req.query.search
    try {
-      const result = await AllProductsData.find()
+      const result = await AllProductsData.find({name: {$regex: search}})
       res.send(result)
    } catch (error) {
       res.status(400).send(error)
